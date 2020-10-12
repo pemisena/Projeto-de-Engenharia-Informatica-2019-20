@@ -1,7 +1,0 @@
-1;"Lusomundo Movies";"www.lusomundo.pt";"Distribuidora";6/8/2020 22:26:17
-2;"Rocky movies";"rockymovies.com";"produtora";6/8/2020 22:26:17
-3;"DreamWorks Movies";"www.dreamworks.com";"Produtora";6/8/2020 22:26:17
-4;"Marvel Comics";"www.marvelcomics.org";"Produtora";6/8/2020 22:26:17
-5;"Castelo Lopes Movies";"www.castelolopes.pt";"Distribuidora";6/8/2020 22:26:17
-6;"Disney Movies";"www.disney.com";"Produtora";6/8/2020 22:26:17
-7;"Sony Movies";"www.sony.com";"Distribuidora";6/8/2020 22:26:17
