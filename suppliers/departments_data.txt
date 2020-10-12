@@ -1,4 +1,0 @@
-1;"head office"
-2;"warehouse"
-3;"company office"
-4;"cinema studios"
