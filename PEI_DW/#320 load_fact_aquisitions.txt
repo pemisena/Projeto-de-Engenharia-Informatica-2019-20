@@ -1,0 +1,42 @@
+--
+-- #320 load_fact_aquisitions
+--
+-- Pedro Narciso
+-- 1400059
+-- Universidade Aberta
+--
+INSERT INTO 320_fact_aquisitions ( 
+    aquisition_id,
+    film_key, 
+    supplier_key, 
+    staff_key, 
+    unit_price, 
+    total_price, 
+    quantity, 
+    aquisition_date_key,
+    load_date )
+SELECT 
+    QFA.aquisition_id, 
+    [303_dim_films].film_key, 
+    [305_dim_suppliers].supplier_key, 
+    [304_dim_staff].staff_key, 
+    QFA.unit_price, 
+    QFA.total_price, 
+    QFA.quantity, 
+    [307_dim_calendar].calendar_key, 
+    QFA.load_date
+FROM ((((SELECT 
+            aquisition_id, 
+            movie_id, 
+            supplier_id, 
+            staff_id, 
+            unit_price, 
+            total_price, 
+            quantity, 
+            aquisition_date, 
+            load_date 
+        FROM 220_fact_aquisitions IN 'C:\1400059-PEI\DW_Transform.accdb')  AS QFA 
+INNER JOIN 303_dim_films ON QFA.movie_id = [303_dim_films].movie_id) 
+INNER JOIN 304_dim_staff ON QFA.staff_id = [304_dim_staff].staff_id) 
+INNER JOIN 305_dim_suppliers ON QFA.supplier_id = [305_dim_suppliers].supplier_id) 
+INNER JOIN 307_dim_calendar ON QFA.aquisition_date = [307_dim_calendar].calendar;

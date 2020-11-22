@@ -1,0 +1,39 @@
+--
+--
+--
+INSERT INTO 207_dim_calendar ( 
+	calendar, 
+	dday, 
+	weekday, 
+	yearday, 
+	yearweek, 
+	mmonth, 
+	qquarter, 
+	yyear )
+SELECT 
+	DateSerial(Year([calendar]), Month([calendar]), Day([calendar])) AS Calendario, 
+	Day([calendar]) AS DDay, 
+	Weekday([calendar]) AS DDiaSemana, 
+	Format([calendar],'y') AS DayYear, 
+	Format([calendar],'ww') AS WeekYear, 
+	Month([calendar]) AS MMonth, 
+	Format([calendar],'q') AS QQuarter, 
+	Year([calendar]) AS YYear
+FROM 107_dim_calendar IN 'C:\1400059-PEI\DW_Extract.accdb'
+GROUP BY 
+	DateSerial(Year([calendar]), Month([calendar]),Day([calendar])), 
+	Day([calendar]), 
+	Weekday([calendar]), 
+	Format([calendar],'y'), 
+	Format([calendar],'ww'), 
+	Month([calendar]), 
+	Format([calendar],'q'), 
+	Year([calendar]);
+
+
+--
+INSERT INTO 207_dim_calendar ( calendar, dday, weekday, yearday, yearweek, mmonth, qquarter, yyear )
+SELECT DateSerial(Year([calendar]),Month([calendar]),Day([calendar])) AS Calendario, Day([calendar]) AS DDay, Weekday([calendar]) AS DDiaSemana, Format([calendar],'y') AS DayYear, Format([calendar],'ww') AS WeekYear, Month([calendar]) AS MMonth, Format([calendar],'q') AS QQuarter, Year([calendar]) AS YYear
+FROM 107_dim_calendar IN 'C:\1400059-PEI\DW_Extract.accdb'
+GROUP BY DateSerial(Year([calendar]),Month([calendar]),Day([calendar])), Day([calendar]), Weekday([calendar]), Format([calendar],'y'), Format([calendar],'ww'), Month([calendar]), Format([calendar],'q'), Year([calendar]);
+

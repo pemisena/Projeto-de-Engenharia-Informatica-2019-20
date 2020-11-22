@@ -1,0 +1,24 @@
+--
+-- #225 Transf_fact_salaries_direct
+--
+-- Pedro Narciso
+-- 1400059
+-- Universidade Aberta
+--
+INSERT INTO 225_fact_salaries ( 
+	employee_id, 
+	first_name, 
+	last_name, 
+	title, 
+	salary, 
+	start_date, 
+	load_date )
+SELECT 
+	employee_id, 
+	first_name, 
+	last_name, 
+	title, 
+	salary, 
+	start_date, 
+	extract_date
+FROM 125_fact_salaries IN 'C:\1400059-PEI\DW_Extract.accdb';

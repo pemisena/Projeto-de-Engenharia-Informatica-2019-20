@@ -1,0 +1,22 @@
+--
+-- #303 load_dim_films
+--
+-- Pedro Narciso
+-- 1400059
+-- Universidade Aberta
+--
+INSERT INTO 303_dim_films ( 
+	film_id, 
+	movie_id, 
+	title, 
+	release_year, 
+	[Language], 
+	load_date )
+SELECT 
+	film_id, 
+	movie_id, 
+	title, 
+	release_year, 
+	Language, 
+	load_date
+FROM 203_dim_films IN 'C:\1400059-PEI\DW_Transform.accdb';

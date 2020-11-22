@@ -1,0 +1,20 @@
+--
+-- #205 transform_dim_suppliers_direct
+--
+-- Pedro Narciso
+-- 1400059
+-- Universidade Aberta
+--
+INSERT INTO 205_dim_suppliers ( 
+	supplier_id, 
+	supplier_name, 
+	supplier_type, 
+	-- last_update, 
+	load_date )
+SELECT 
+	supplier_id, 
+	supplier_name, 
+	supplier_type, 
+	-- last_update, 
+	extract_date
+FROM 105_dim_suppliers IN 'C:\1400059-PEI\DW_Extract.accdb';

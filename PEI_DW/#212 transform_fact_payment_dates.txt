@@ -1,0 +1,21 @@
+-- Transform_fact_payment_dates
+-- 
+INSERT INTO TRF_fact_Payment ( 
+     payment_id, 
+     customer_id, 
+     staff_id, 
+     rental_id, 
+     amount, 
+     payment_date, 
+     last_update, 
+     extract_date )
+SELECT 
+     payment_id, 
+     customer_id, 
+     staff_id, 
+     rental_id, 
+     amount, 
+     Day([payment_date]) & '/' & Month([payment_date]) & '/' & Year([payment_date]) AS data,
+     last_update,
+     extract_date
+FROM ETL_fact_Payment

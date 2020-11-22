@@ -1,0 +1,16 @@
+--
+-- #222 Transf_film_actor_direct
+--
+-- Pedro Narciso
+-- 1400059
+-- Universidade Aberta
+--
+INSERT INTO 222_fact_film_actors ( 
+	actor_id, 
+	film_id, 
+	load_date )
+SELECT 
+	actor_id, 
+	film_id, 
+	extract_date
+FROM 122_fact_film_actors IN 'C:\1400059-PEI\DW_Extract.accdb';

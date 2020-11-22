@@ -1,0 +1,24 @@
+--
+-- #224 Transf_fact_relatives_direct
+--
+-- Pedro Narciso
+-- 1400059
+-- Universidade Aberta
+--
+INSERT INTO 224_fact_relatives ( 
+	relative_id, 
+	employee_id, 
+	child_first_name, 
+	child_last_name, 
+	child_gender, 
+	child_birth_date, 
+	load_date )
+SELECT 
+	relative_id, 
+	employee_id, 
+	child_first_name, 
+	child_last_name, 
+	child_gender, 
+	child_birth_date, 
+	extract_date
+FROM 124_fact_relatives IN 'C:\1400059-PEI\DW_Extract.accdb';

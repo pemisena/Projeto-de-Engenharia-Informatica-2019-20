@@ -1,0 +1,18 @@
+--
+-- #301 load_dim_actors
+--
+-- Pedro Narciso
+-- 1400059
+-- Universidade Aberta
+--
+INSERT INTO 301_dim_actors ( 
+	actor_id, 
+	first_name, 
+	last_name, 
+	load_date )
+SELECT 
+	actor_id, 
+	first_name,
+	last_name,
+	load_date
+FROM 201_dim_actors IN 'C:\1400059-PEI\DW_Transform.accdb';

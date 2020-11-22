@@ -1,0 +1,31 @@
+--
+-- #204 transform_dim_staff_groupBy
+--
+-- Pedro Narciso
+-- 1400059
+-- Universidade Aberta
+--
+INSERT INTO 204_dim_staff ( 
+	staff_id, 
+	employee_id, 
+	first_name, 
+	last_name, 
+	hire_date, 
+	exit_date, 
+	department_name, 
+	--last_update, 
+	load_date )
+SELECT 
+	Max(staff_id) AS StfID, 
+	Max(employee_id) AS EmpID, 
+	first_name, 
+	last_name, 
+	Max(hire_date) AS HrDt, 
+	Max(exit_date) AS ExtDt, 
+	Max(department_name) AS DepNa, 
+	-- Max(last_update) AS MLU, 
+	Max(extract_date) AS ExDt
+FROM 104_dim_staff IN 'C:\1400059-PEI\DW_Extract.accdb'
+GROUP BY 
+	first_name,
+	last_name;

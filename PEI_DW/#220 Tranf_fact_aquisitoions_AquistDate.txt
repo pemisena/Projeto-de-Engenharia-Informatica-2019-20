@@ -1,0 +1,28 @@
+--
+-- #220 Tranf_fact_aquisitoions_AquistDate
+--
+-- Pedro Narciso
+-- 1400059
+-- Universidade Aberta
+--
+INSERT INTO 220_fact_aquisitions ( 
+	aquisition_id, 
+	movie_id, 
+	supplier_id, 
+	staff_id, 
+	unit_price, 
+	total_price, 
+	quantity, 
+	aquisition_date, 
+	load_date )
+SELECT 
+	aquisition_id, 
+	movie_id, 
+	supplier_id, 
+	staff_id, 
+	unit_price, 
+	total_price, 
+	quantity, 
+	DateSerial(Year([aquisition_date]),Month([aquisition_date]),Day([aquisition_date])) AS AquDate, 
+	extract_date
+FROM 120_fact_aquisitions IN 'C:\1400059-PEI\DW_Extract.accdb';

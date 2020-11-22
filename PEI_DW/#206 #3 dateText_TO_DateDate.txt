@@ -1,0 +1,26 @@
+--
+-- #206 #3 dateText_TO_DateDate
+-- 
+INSERT INTO 206_dim_rentals ( 
+     rental_id, 
+     rental_date, 
+     return_date, 
+     title, 
+     customer_first_name, 
+     customer_last_name, 
+     staff_first_name, 
+     staff_last_name, 
+     last_update, 
+     extract_date )
+SELECT
+     rental_id,
+     rental_date, 
+     return_date, 
+     title, 
+     customer_first_name, 
+     customer_last_name, 
+     staff_first_name, 
+     staff_last_name, 
+     last_update, 
+     extract_date
+FROM 206_stg1_dim_rentals;

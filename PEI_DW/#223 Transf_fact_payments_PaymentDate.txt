@@ -1,0 +1,24 @@
+--
+-- #223 Transf_fact_payments_PaymentDate
+--
+-- Pedro Narciso
+-- 1400059
+-- Universidade Aberta
+--
+INSERT INTO 223_fact_payments ( 
+	payment_id, 
+	customer_id, 
+	staff_id, 
+	rental_id, 
+	amount, 
+	payment_date, 
+	load_date )
+SELECT 
+	payment_id, 
+	customer_id, 
+	staff_id, 
+	rental_id, 
+	amount, 
+	DateSerial(Year(payment_date),Month(payment_date),Day(payment_date)) AS PaymDate, 
+	extract_date
+FROM 123_fact_payments IN 'C:\1400059-PEI\DW_Extract.accdb';

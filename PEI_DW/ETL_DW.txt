@@ -1,0 +1,80 @@
+INSERT INTO ETL_Customer ( customer_id, first_name, last_name, city, Store, create_date, active, last_update ) 
+SELECT 
+    customer.customer_id, 
+	customer.first_name, 
+	customer.last_name, 
+	city.city, 
+	city_1.city AS Store, 
+	customer.create_date, 
+	customer.active, 
+	customer.last_update
+FROM (city AS city INNER JOIN (address AS address INNER JOIN store ON address.address_id = store.address_id) ON city.city_id = address.city_id) INNER JOIN (city INNER JOIN (address INNER JOIN customer ON address.address_id = customer.address_id) ON city.city_id = address.city_id) ON store.store_id = customer.store_id
+ORDER BY customer.customer_id;
+
+
+ -- EMPLOYEES --
+ -- ETL_dim_employees
+ -- Extração resulta de duas tabelas
+ 
+ -- Extract FROM Sakila
+ 
+ -- Extract from EMPLOYEES
+ QUERY : Extract_dim_staff_employees
+ INSERT INTO ETL_dim_Staff ( 
+     employee_id, 
+     first_name, 
+     last_name, 
+     hire_date, 
+     exit_date, 
+     department_name,
+     last_update,
+     extract_date )
+SELECT 
+     employees.employee_id, 
+     employees.first_name, 
+     employees.last_name, 
+     employees.hire_date,
+     employees.exit_date, 
+     departments1.department_name,
+     employees.last_update,
+     now()
+FROM
+     departments1 INNER JOIN ( (address INNER JOIN employees ON address.address_id = employees.address_id)
+                                                   INNER JOIN department_employee ON employees.employee_id = department_employee.employee_id) ON departments1.department_id = department_employee.department_id;
+												   
+ TRF_dim_employees
+ 
+ -- QUERY: Transform_dim_employees_1
+ INSERT INTO TRF_dim_employees (
+     employee_id, 
+     staff_id, 
+     first_name, 
+     last_name, 
+     hire_date, 
+     exit_date, 
+     department_name, 
+     last_update,
+     extract_date )
+SELECT 
+     Max(employee_id),
+     Max(staff_id), 
+     first_name, 
+     last_name, 
+     Min(hire_date), 
+     Max(exit_date), 
+     First(department_name), 
+     last_update,
+     now()
+FROM ETL_dim_Employees
+GROUP BY first_name, last_name
+HAVING (Min(hire_date)) Is Not Null;
+
+
+--------------------------------------
+dim_rentals
+
+query: #8 extract_dim_rentals
+
+INSERT INTO ETL_dim_Rentals ( rental_id, rental_date, title, customer_first_name, customer_last_name, return_date, staff_last_name, staff_first_name, last_update, extract_date )
+SELECT rental.rental_id, rental.rental_date, film.title, customer.first_name AS customer_first_name, customer.last_name AS customer_last_name, rental.return_date, staff.last_name AS staff_last_name, staff.last_name AS staff_first_name, rental.last_update, Now() AS extract_date
+FROM (film INNER JOIN inventory ON film.film_id = inventory.film_id) INNER JOIN (customer INNER JOIN (rental INNER JOIN staff ON rental.staff_id = staff.staff_id) ON customer.customer_id = rental.customer_id) ON inventory.inventory_id = rental.inventory_id;

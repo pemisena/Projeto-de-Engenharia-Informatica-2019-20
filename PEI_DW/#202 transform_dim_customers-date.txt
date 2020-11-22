@@ -1,0 +1,26 @@
+--
+-- #202 transform_dim_customers-date
+--
+-- Pedro Narciso
+-- 1400059
+-- Universidade Aberta
+--
+INSERT INTO 202_dim_customers ( 
+	customer_id, 
+	first_name, 
+	last_name, 
+	city, 
+	store, 
+	create_date, 
+	active, 
+	load_date )
+SELECT 
+	customer_id, 
+	first_name, 
+	last_name, 
+	city, 
+	store,
+	DateSerial(Year([create_date]),Month([create_date]),Day([create_date])) AS create_dt, 
+	active, 
+	extract_date
+FROM 102_dim_customers IN 'C:\1400059-PEI\DW_Extract.accdb';

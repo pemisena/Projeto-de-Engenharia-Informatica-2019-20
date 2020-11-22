@@ -1,0 +1,26 @@
+--
+-- #307 load_dim_calendar
+--
+-- Pedro Narciso
+-- 1400059
+-- Universidade Aberta
+--
+INSERT INTO 307_dim_calendar ( 
+	calendar,
+	dday,
+	weekday,
+	yearday,
+	yearweek,
+	mmonth,
+	qquarter,
+	yyear )
+SELECT 
+	calendar, 
+	dday, 
+	weekday, 
+	yearday, 
+	yearweek, 
+	mmonth, 
+	qquarter, 
+	yyear
+FROM 207_dim_calendar IN 'C:\1400059-PEI\DW_Transform.accdb';

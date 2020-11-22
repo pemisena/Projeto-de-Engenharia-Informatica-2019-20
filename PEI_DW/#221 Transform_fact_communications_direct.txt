@@ -1,0 +1,22 @@
+--
+-- #221 Transform_fact_communications_direct
+--
+-- Pedro Narciso
+-- 1400059
+-- Universidade Aberta
+--
+INSERT INTO 221_fact_communications ( 
+	comm_id, 
+	supplier_id, 
+	staff_id, 
+	comm_type, 
+	comm_date, 
+	load_date )
+SELECT 
+	comm_id, 
+	supplier_id, 
+	staff_id, 
+	comm_type, 
+	comm_date, 
+	extract_date
+FROM 121_fact_communications IN 'C:\1400059-PEI\DW_Extract.accdb';
