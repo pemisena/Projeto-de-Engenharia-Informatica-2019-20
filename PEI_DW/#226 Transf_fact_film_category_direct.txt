@@ -1,0 +1,18 @@
+--
+-- #226 Transf_fact_film_category_direct
+--
+-- Pedro Narciso
+-- 1400059
+-- Universidade Aberta
+--
+INSERT INTO 226_fact_film_category ( 
+   film_id, 
+   category_id, 
+   last_update, 
+   load_date )
+SELECT 
+   film_id, 
+   category_id, 
+   last_update, 
+   extract_date
+FROM 126_fact_film_category IN 'C:\1400059-PEI\DW_Extract.accdb';

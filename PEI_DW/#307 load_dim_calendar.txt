@@ -6,21 +6,27 @@
 -- Universidade Aberta
 --
 INSERT INTO 307_dim_calendar ( 
-	calendar,
-	dday,
-	weekday,
-	yearday,
-	yearweek,
-	mmonth,
-	qquarter,
-	yyear )
+calendar, 
+nDay, 
+   nWeekday, 
+   tWeekDay, 
+   nYearDay, 
+   nYearWeek, 
+   nMonth, 
+   tMonth, 
+   nQuarter, 
+   nyear )
 SELECT 
-	calendar, 
-	dday, 
-	weekday, 
-	yearday, 
-	yearweek, 
-	mmonth, 
-	qquarter, 
-	yyear
+   calendar, 
+   nDay, 
+   nWeekday, 
+   tWeekDay, 
+   nYearDay, 
+   nYearWeek, 
+   nMonth, 
+   tMonth, 
+   nQuarter,
+   nyear
 FROM 207_dim_calendar IN 'C:\1400059-PEI\DW_Transform.accdb';
+
+

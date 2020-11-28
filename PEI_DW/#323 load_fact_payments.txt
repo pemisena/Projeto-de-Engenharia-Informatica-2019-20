@@ -1,0 +1,41 @@
+--
+-- #323 load_fact_payments
+--
+-- Pedro Narciso
+-- 1400059
+-- Universidade Aberta
+--
+INSERT INTO 323_fact_payments ( 
+    payment_id, 
+    customer_key, 
+    staff_key, 
+    rental_key, 
+    amount, 
+    payment_date_key, 
+    load_date )
+SELECT 
+    PYM.payment_id, 
+    CTM.customer_key, 
+    STF.staff_key, 
+    RTL.rental_key, 
+    PYM.amount, 
+    CLD.calendar_key, 
+    PYM.load_date
+FROM ((((SELECT 
+            payment_id, 
+            customer_id, 
+            staff_id, 
+            rental_id, 
+            amount, 
+            payment_date, 
+            load_date
+        FROM 223_fact_payments IN 'C:\1400059-PEI\DW_Transform.accdb')  AS PYM 
+INNER JOIN 302_dim_customers AS CTM ON PYM.customer_id = CTM.customer_id) 
+INNER JOIN 304_dim_staff AS STF ON PYM.staff_id = STF.staff_id) 
+INNER JOIN 306_dim_rentals AS RTL ON PYM.rental_id = RTL.rental_id) 
+INNER JOIN 307_dim_calendar CLD ON PYM.payment_date = CLD.calendar;
+
+
+INSERT INTO 323_fact_payments ( payment_id, customer_key, staff_key, rental_key, film_key, amount, payment_date_key, load_date )
+SELECT PYM.payment_id, CTM.customer_key, STF.staff_key, RTL.rental_key, [303_dim_films].film_key, PYM.amount, CLD.calendar_key, PYM.load_date
+FROM (((((SELECT payment_id, customer_id, staff_id, rental_id, film_id, amount, payment_date, load_date FROM 223_fact_payments IN 'C:\1400059-PEI\DW_Transform.accdb')  AS PYM INNER JOIN 302_dim_customers AS CTM ON PYM.customer_id = CTM.customer_id) INNER JOIN 304_dim_staff AS STF ON PYM.staff_id = STF.staff_id) INNER JOIN 306_dim_rentals AS RTL ON PYM.rental_id = RTL.rental_id) INNER JOIN 307_dim_calendar AS CLD ON PYM.payment_date = CLD.calendar) INNER JOIN 303_dim_films ON PYM.film_id = [303_dim_films].film_id;

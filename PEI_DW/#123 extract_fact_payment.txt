@@ -1,0 +1,11 @@
+--
+-- #123 extract_fact_payment
+--
+-- Pedro Narciso
+-- 1400059
+-- Universidade Aberta
+--
+
+INSERT INTO 123_fact_payments ( payment_id, customer_id, staff_id, rental_id, film_id, amount, payment_date, last_update, extract_date )
+SELECT P.payment_id, R.customer_id, R.staff_id, R.rental_id, I.film_id, P.amount, P.payment_date, P.last_update, Now() AS [extract]
+FROM ((film AS F INNER JOIN inventory AS I ON F.film_id = I.film_id) INNER JOIN rental AS R ON I.inventory_id = R.inventory_id) INNER JOIN payment AS P ON R.rental_id = P.rental_id IN 'C:\1400059-PEI\sakila.accdb';

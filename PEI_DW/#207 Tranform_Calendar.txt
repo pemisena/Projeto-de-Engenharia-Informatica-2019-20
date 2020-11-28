@@ -1,6 +1,37 @@
 --
+-- #207 Tranform_Calendar
+-- 
+-- Pedro Narciso
+-- 1400059
+-- Universidade Aberta
 --
---
+INSERT INTO 207_dim_calendar ( 
+calendar, 
+nDay, 
+nWeekDay, 
+tWeekDay, 
+nYearDay, 
+nYearWeek, 
+nMonth, 
+tMounth, 
+nQuarter, 
+nYear )
+SELECT 
+DateSerial(Year([calendar]), Month([calendar]),Day([calendar])) AS Calendario, 
+Day([calendar]) AS nDay, 
+Weekday([calendar]) AS nWeekDay, 
+WeekdayName(Weekday([calendar]),True,1) AS tWeekDay, 
+Format([calendar],'y') AS nYearDay, 
+Format([calendar],'ww') AS nWeekYear, 
+Month([calendar]) AS nMonth, 
+MonthName(Month([calendar]),True) AS tMonth, 
+Format([calendar],'q') AS nQuarter, 
+Year([calendar]) AS nYear
+FROM 107_dim_calendar IN 'C:\1400059-PEI\DW_Extract.accdb'
+GROUP BY DateSerial(Year([calendar]),Month([calendar]),Day([calendar])), Day([calendar]), Weekday([calendar]), WeekdayName(Weekday([calendar]),True,1), Format([calendar],'y'), Format([calendar],'ww'), Month([calendar]), MonthName(Month([calendar]),True), Format([calendar],'q'), Year([calendar]);
+
+
+---- OLD ----
 INSERT INTO 207_dim_calendar ( 
 	calendar, 
 	dday, 

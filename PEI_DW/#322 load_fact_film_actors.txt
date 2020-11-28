@@ -1,0 +1,24 @@
+--
+-- #322 load_fact_film_actors
+--
+-- Pedro Narciso
+-- 1400059
+-- Universidade Aberta
+--
+INSERT INTO 322_fact_film_actors ( 
+    actor_key, 
+    film_key, 
+    load_date )
+SELECT 
+    ACT.actor_key, 
+    FLM.film_key, 
+    FFA.load_date
+FROM ((SELECT 
+           actor_id, 
+           film_id, 
+           load_date
+       FROM 222_fact_film_actors IN 'C:\1400059-PEI\DW_Transform.accdb')  AS FFA 
+INNER JOIN 303_dim_films AS FLM ON FFA.film_id = FLM.film_id) 
+INNER JOIN 301_dim_actors AS ACT ON FFA.actor_id = ACT.actor_id;
+
+

@@ -1,0 +1,25 @@
+--
+-- #326 load fact_film_category
+--
+-- Pedro Narciso
+-- 1400059
+-- Universidade Aberta
+--
+INSERT INTO 326_fact_film_category ( 
+film_key, 
+category_key, 
+last_update, 
+load_date )
+SELECT 
+FLM.film_key, 
+CAT.category_key, 
+FFC.last_update, 
+FFC.load_date
+FROM ((SELECT 
+               film_id,
+               category_id,
+               last_update, 
+               load_date
+           FROM 226_fact_film_category IN 'C:\1400059-PEI\DW_Transform.accdb')  AS FFC 
+INNER JOIN 308_dim_category CAT ON FFC.category_id = CAT.category_id) 
+INNER JOIN 303_dim_films AS FLM ON FFC.film_id = FLM.film_id;
