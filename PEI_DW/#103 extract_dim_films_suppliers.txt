@@ -1,0 +1,23 @@
+--
+-- #102 extract_dim_films_from_suppliers
+--
+-- Pedro Narciso
+-- Numero 1400059
+-- Novembro de 2020
+-- Universidade Aberta
+--
+INSERT INTO 103_dim_film ( 
+    movie_id, 
+    title, 
+    release_year, 
+    origin,  
+    last_update, 
+    extract_date )
+SELECT 
+    movie_id, 
+    title, 
+    release_year, 
+   'supp_aquisitions' AS tabela, 
+    last_update, 
+    Now() AS Extract_date
+FROM movies IN 'C:\1400059-PEI\suppliers.accdb';

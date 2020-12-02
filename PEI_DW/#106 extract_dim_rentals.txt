@@ -2,21 +2,20 @@
 -- #106 extract_dim_rentals
 --
 -- Pedro Narciso
--- 1400059
+-- Numero 1400059
+-- Novembro de 2020
 -- Universidade Aberta
 --
 INSERT INTO 106_dim_rentals ( 
-   rental_id, 
-   rental_date, 
-   return_date, 
-   last_update, 
-   extract_date )
+     rental_id, 
+     rental_date, 
+     return_date, 
+     last_update, 
+     extract_date )
 SELECT 
-   RNT.rental_id, 
-   RNT.rental_date, 
-   RNT.return_date, 
-   RNT.last_update, 
-Now() AS extract_date
-FROM (film INNER JOIN inventory ON film.film_id = inventory.film_id) 
-           INNER JOIN (customer 
-		               INNER JOIN (rental AS RNT INNER JOIN staff ON RNT.staff_id = staff.staff_id) ON customer.customer_id = RNT.customer_id) ON inventory.inventory_id = RNT.inventory_id IN 'C:\1400059-PEI\sakila.accdb';
+     rental_id, 
+     rental_date, 
+     return_date,  
+     last_update, 
+     Now() AS extract_date
+FROM rental IN 'C:\1400059-PEI\sakila.accdb';

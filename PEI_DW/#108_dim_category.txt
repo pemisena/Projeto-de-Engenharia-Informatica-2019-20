@@ -16,3 +16,16 @@ SELECT
    last_update, 
    Now() AS extract_date
 FROM category IN 'C:\1400059-PEI\sakila.accdb';
+
+INSERT INTO 108_dim_category ( 
+     category_id, 
+     category_name, 
+     last_update, 
+     extract_date )
+SELECT 
+     category_id, 
+     name, 
+     last_update, 
+     Now() AS extract_date
+FROM category IN 'C:\1400059-PEI\sakila.accdb';
+

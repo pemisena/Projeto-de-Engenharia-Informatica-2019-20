@@ -1,0 +1,26 @@
+--
+-- #103 extract_dim_film_sakila
+--
+-- Pedro Narciso
+-- Numero 1400059
+-- Novembro de 2020
+-- Universidade Aberta
+--
+INSERT INTO 103_dim_film ( 
+     film_id, 
+     title, 
+     release_year, 
+     name, 
+     origin, 
+     last_update, 
+    extract_date )
+SELECT 
+     F.film_id, 
+     F.title, 
+     F.release_year, 
+     L.name, 
+     'Sakila_film', 
+     F.last_update, 
+     Now() 
+FROM [language] AS L 
+     INNER JOIN film AS F ON L.language_id = F.language_id IN 'C:\1400059-PEI\sakila.accdb';

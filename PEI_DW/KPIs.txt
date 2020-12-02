@@ -1,0 +1,38 @@
+
+
+
+TRANSFORM Count(RNT.rental_key) AS ContarDerental_key
+SELECT 
+   CTG.category_name, 
+   Count(CTG.category_key) AS Soma
+FROM ((326_fact_film_category AS FFC 
+INNER JOIN ((303_dim_film AS FLM 
+INNER JOIN 323_fact_payment AS PYM ON FLM.film_key = PYM.film_key) 
+INNER JOIN 306_dim_rental AS RNT ON PYM.rental_key = RNT.rental_key) ON FFC.film_key = FLM.film_key) 
+INNER JOIN 308_dim_category AS CTG ON FFC.category_key = CTG.category_key) 
+INNER JOIN 307_dim_calendar AS CLD ON RNT.rental_date = CLD.calendar
+GROUP BY CTG.category_name
+PIVOT CLD.nWeekday;
+
+
+
+TRANSFORM Count([320_fact_aquisition].aquisition_key) AS ContarDeaquisition_key
+SELECT 
+   [first_name] & ' ' & [last_name] AS Funcionario
+FROM ((320_fact_aquisition AS AQU
+INNER JOIN 304_dim_staff AS STF ON AQU.staff_key = STF.staff_key) 
+INNER JOIN 303_dim_film AS FLM ON AQU.film_key = FLM.film_key) 
+INNER JOIN 307_dim_calendar AS CAL ON AQU.aquisition_date_key = CAL.calendar_key
+GROUP BY [first_name] & ' ' & [last_name]
+PIVOT CAL.tMonth;
+
+
+TRANSFORM Count(AQU.aquisition_key) AS ContarDeaquisition_key
+SELECT 
+     [first_name] & ' ' & [last_name] AS Funcionario
+FROM ((304_dim_staff As STF
+INNER JOIN 320_fact_aquisition AQU ON STF.staff_key = AQU.staff_key) 
+INNER JOIN 305_dim_suppliers AS SUP ON AQU.supplier_key = SUP.supplier_key) 
+INNER JOIN 307_dim_calendar AS CAL ON AQU.aquisition_date_key = CAL.calendar_key
+GROUP BY [first_name] & ' ' & [last_name]
+PIVOT SUP.supplier_name;

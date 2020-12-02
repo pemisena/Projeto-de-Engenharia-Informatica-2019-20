@@ -1,0 +1,21 @@
+--
+-- #104 extract_dim_staff_from_sakila
+--
+-- Pedro Narciso
+-- Numero 1400059
+-- Novembro de 2020
+-- Universidade Aberta
+--
+INSERT INTO 104_dim_staff ( 
+     staff_id, 
+     first_name, 
+     last_name, 
+     last_update, 
+     extract_date )
+SELECT 
+     staff_id, 
+     first_name, 
+     last_name, 
+     last_update, 
+     Now() AS extract_date
+FROM staff IN 'C:\1400059-PEI\sakila.accdb';

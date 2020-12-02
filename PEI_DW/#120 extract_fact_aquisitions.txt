@@ -1,0 +1,27 @@
+--
+-- #120 extract_fact_aquisitions
+--
+-- Pedro Narciso
+-- Numero 1400059
+-- Novembro de 2020
+-- Universidade Aberta
+
+INSERT INTO 120_fact_aquisitions ( 
+     aquisition_id, 
+     movie_id, 
+     supplier_id, 
+     staff_id, 
+     unit_price, 
+     quantity, 
+     aquisition_date, 
+     extract_date )
+SELECT 
+     aquisitions.aquisition_id, 
+     aquisitions.movie_id, 
+     aquisitions.supplier_id, 
+     aquisitions.staff_id,  
+     aquisitions.price AS unit_price, 
+      aquisitions.quantity, 
+     aquisitions.aquisition_date, 
+     Now() AS [extract]
+FROM aquisitions IN 'C:\1400059-PEI\suppliers.accdb';

@@ -1,0 +1,21 @@
+--
+-- #105 extract_dim_suppliers
+--
+-- Pedro Narciso
+-- Numero 1400059
+-- Novembro de 2020
+-- Universidade Aberta
+--
+INSERT INTO 105_dim_suppliers ( 
+     supplier_id, 
+     name, 
+     supplier_type, 
+     last_update, 
+     extract_date )
+SELECT 
+     supplier_id, 
+     name, 
+     supplier_type,
+     last_update, 
+     Now() AS extract_date
+FROM suppliers IN 'C:\1400059-PEI\suppliers.accdb';

@@ -1,0 +1,21 @@
+--
+-- #101 extract_dim_actor
+--
+-- Pedro Narciso
+-- Numero 1400059
+-- Novembro de 2020
+-- Universidade Aberta
+--
+INSERT INTO 101_dim_actor ( 
+   actor_id,  
+   first_name, 
+   last_name, 
+   last_update, 
+   extract_date )
+SELECT 
+   actor.actor_id, 
+   actor.first_name,  
+   actor.last_name, 
+   actor.last_update, 
+   Now() AS extract_date
+FROM actor IN 'C:\1400059-PEI\sakila.accdb';

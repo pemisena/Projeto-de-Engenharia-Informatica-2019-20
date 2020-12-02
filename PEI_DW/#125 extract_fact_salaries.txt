@@ -1,0 +1,22 @@
+--
+-- #125 extract_fact_salaries
+--
+-- Pedro Narciso
+-- Numero 1400059
+-- Novembro de 2020
+-- Universidade Aberta
+--
+INSERT INTO 125_fact_salaries ( 
+     employee_id, 
+     title, 
+     salary, 
+     start_date, 
+     extract_date )
+SELECT 
+     salaries.employee_id, 
+     titles.title, 
+     salaries.salary, 
+     salaries.start_date, 
+     Date() AS [extract]
+FROM titles 
+INNER JOIN salaries ON titles.title_id = salaries.title_id IN 'C:\1400059-PEI\employees.accdb';

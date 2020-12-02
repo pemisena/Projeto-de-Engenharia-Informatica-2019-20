@@ -1,0 +1,34 @@
+--
+-- #104 extract_dim_staff_from_employees
+--
+-- Pedro Narciso
+-- Numero 1400059
+-- Novembro de 2020
+-- Universidade Aberta
+--
+
+
+INSERT INTO 104_dim_staff ( 
+    employee_id, 
+    first_name, 
+    last_name, 
+    hire_date, 
+    exit_date, 
+    department_name, 
+    last_update, 
+    extract_date )
+SELECT 
+    E.employee_id, 
+    E.first_name, 
+    E.last_name, 
+    E.hire_date, 
+    E.exit_date, 
+    D.department_name, 
+    E.last_update, 
+    Now() AS extract_date
+FROM departments AS D 
+INNER JOIN (employees AS E 
+INNER JOIN department_employee AS DE
+     ON E.employee_id = DE.employee_id)  
+     ON D.department_id = DE.department_id 
+IN 'C:\1400059-PEI\employees.accdb';

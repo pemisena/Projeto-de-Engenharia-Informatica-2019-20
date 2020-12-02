@@ -1,0 +1,27 @@
+--
+-- #121 extract_fact_communications
+--
+-- Pedro Narciso
+-- Numero 1400059
+-- Novembro de 2020
+-- Universidade Aberta
+--
+INSERT INTO 121_fact_communication ( 
+     comm_id, 
+     supplier_id, 
+     staff_id, type, 
+     comm_date, 
+     extract_date )
+SELECT 
+     CM.comm_id, 
+     S.supplier_id, 
+     CM.staff_id, 
+     CM.type, 
+     CM.comm_date, 
+     Now() AS [extract]
+FROM suppliers AS S
+INNER JOIN (contacts AS C
+INNER JOIN communications AS CM 
+     ON C.contact_id = CM.contact_id) 
+     ON S.supplier_id = C.supplier_id IN 'C:\1400059-PEI\suppliers.accdb';
+  
