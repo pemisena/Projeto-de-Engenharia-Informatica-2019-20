@@ -1,0 +1,49 @@
+
+Incluir os seguintes conceitos no Cap1, secção 8
+-data sources -> ETL -> matriz/constelação -> consultas OLAP. 
+       --> Conceitos introduzidos a páginas 19 e 20)
+-data sources: que dados tenho? 
+       --> (Definicção dos dados disponiveis na página 21)
+-ETL: o que posso extrair em ETL? (alterar secções 3.3 para 2.3) 
+        --> alterado
+
+- a matriz oferta-procura deve aparecer primeiro a oferta (data sources) e depois a procura (OLAP)
+        --> não percebi a alteração necessária.
+
+-matriz: que dados e perguntas posso fazer?
+        --> não percebi onde introduzir esta informação. Será depois das figuras da matriz oferta-procura?
+
+-OLAP: o que me dizem os dados?
+        -->  --> não percebi onde introduzir esta informação. Será depois das figuras da matriz oferta-procura?
+
+
+pp 20. (cap.2 Data Sources)
+- deve explicar antes o que entende por aditivo, semi-aditivo, não-aditivo, sem factos
+- https://www.kimballgroup.com/data-warehouse-business-intelligence-resources/kimball-techniques/dimensional-modeling-techniques/additive-semi-additive-non-additive-fact/
+      --> efetuada uma breve definição a paginas 22
+
+pp.25  (fim Cap. 2)
+- resumir a informação dos factos aditivos
+--sakila.payment
+--employee.salaries
+--suppliers.aquisitions
+- expilcar o 
+      --> 
+
+pp. 29 
+- a matriz oferta-procura da informação deve aparecer mais tarde
+
+pp. 36 e seguintes 
+- não percebo o processo de ETL 102->202->302, 
+         --> refiz a explicação do processo extração pagina 34
+
+         103-> 203-> 303 
+         --> refiz a explicação do processo de extração e transformação na pagina 35
+
+pp 50
+- as perguntas OLAP não correspondem aos requisitos das matriz oferta-procura
+          --> introduzido perguntas OLAP que constam na matriz oferta-procura
+
+- deve mostar o SQL das consultas
+       -- Colocado o SQL.
+
